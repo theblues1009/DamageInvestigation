@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.techacademy.sayoko.kobayashi.damageinvestigation">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".InvestigationApp"
@@ -29,6 +30,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jp.techacademy.sayoko.kobayashi.damageinvestigation.MainActivity"/>
         </activity>
+        <activity
+            android:name=".investigationInputActivity">
+        </activity>
+
     </application>
 
 </manifest>

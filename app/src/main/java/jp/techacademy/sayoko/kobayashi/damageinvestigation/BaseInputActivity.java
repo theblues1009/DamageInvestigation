@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
-
+import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
@@ -21,6 +25,8 @@ import io.realm.RealmResults;
 
 public class BaseInputActivity extends AppCompatActivity {
     private EditText mRinpanEdit, mSyohanEdit, mAreaEdit, mNumberEdit, mRateOfInvestigationEdit, mInvestigatorsEdit;
+    private Spinner sp;
+
     private Investigation mInvestigation;
 
     private View.OnClickListener mOnDoneClickListner = new View.OnClickListener() {
@@ -48,6 +54,7 @@ public class BaseInputActivity extends AppCompatActivity {
         findViewById(R.id.done_button).setOnClickListener(mOnDoneClickListner);
         mRinpanEdit = (EditText) findViewById(R.id.rinpan_edit_text);
         mSyohanEdit = (EditText) findViewById(R.id.syohan_edit_text);
+        sp = (Spinner) findViewById(R.id.spn_treeSpecies);
         mAreaEdit = (EditText) findViewById(R.id.area_edit_text);
         mNumberEdit = (EditText) findViewById(R.id.number_edit_text);
         mRateOfInvestigationEdit = (EditText) findViewById(R.id.rate_of_invesrtigation_edit_text);
@@ -67,9 +74,22 @@ public class BaseInputActivity extends AppCompatActivity {
             //更新の場合
             mRinpanEdit.setText(mInvestigation.getRinpan());
             mSyohanEdit.setText(mInvestigation.getSyohan());
-            mAreaEdit.setText(mInvestigation.getArea());
+            sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                             //項目が選択された場合の処理
+                                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                 Spinner sp = (Spinner) parent;
+                                                 //選択項目を取得し、その値をトースト表示
+                                                 Toast.makeText(BaseInputActivity.this, String.format("選択項目:%S", sp.getSelectedItem()),
+                                                         Toast.LENGTH_SHORT).show();
+                                             }
+
+                                             //項目が選択されなかった場合の処理（今回は空）
+                                             public void onNothingSelected(AdapterView<?> parent) {
+                                             }
+                                         });
+            mAreaEdit.setText(String.valueOf(mInvestigation.getArea()));
             mNumberEdit.setText(mInvestigation.getNumber());
-            mRateOfInvestigationEdit.setText(mInvestigation.getRateOfDamage());
+            mRateOfInvestigationEdit.setText(String.valueOf(mInvestigation.getRateOfDamage()));
             mInvestigatorsEdit.setText(mInvestigation.getInvestigators());
 
             TextView dateText = (TextView) findViewById(R.id.date_id);
@@ -104,16 +124,18 @@ public class BaseInputActivity extends AppCompatActivity {
             }
             mInvestigation.setId(identifier);
 
-            String rinpan = mRinpanEdit.getText().toString();
-            String syohan = mSyohanEdit.getText().toString();
-            String area = mAreaEdit.getText().toString();
-            String number = mNumberEdit.getText().toString();
-            String rateOfInvestigation = mRateOfInvestigationEdit.getText().toString();
+            int rinpan = Integer.parseInt(mRinpanEdit.getText().toString());
+            int syohan =Integer.parseInt(mSyohanEdit.getText().toString());
+            String tree_species = (String) sp.getSelectedItem();
+            double area = Double.parseDouble(mAreaEdit.getText().toString());
+            int number = Integer.parseInt(mNumberEdit.getText().toString());
+            int rateOfInvestigation = Integer.parseInt(mRateOfInvestigationEdit.getText().toString());
             String investigators = mInvestigatorsEdit.getText().toString();
 
             mInvestigation.setDate(new Date());
             mInvestigation.setRinpan(rinpan);
             mInvestigation.setSyohan(syohan);
+            mInvestigation.setTree_species(tree_species);
             mInvestigation.setArea(area);
             mInvestigation.setNumber(number);
             mInvestigation.setRateOfInvestigation(rateOfInvestigation);

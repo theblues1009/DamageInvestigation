@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item1"
+        android:icon="@drawable/menu1"
+        android:orderInCategory="0"
+        android:title="@string/home"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/menu2"
+        android:orderInCategory="1"
+        android:title="@string/guide">
+        <menu>
+            <item
+                android:id="@+id/item3"
+                android:icon="@drawable/menu3"
+                android:orderInCategory="0"
+                android:title="@string/manual">
+            </item>
+            <item
+                android:id="@+id/item4"
+                android:icon="@drawable/menu3"
+                android:orderInCategory="1"
+                android:title="@string/distinguishment">
+            </item>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/item5"
+        android:icon="@drawable/menu5"
+        android:orderInCategory="2"
+        android:title="@string/in">
+    </item>
+
+    <item
+        android:id="@+id/item6"
+        android:icon="@drawable/menu6"
+        android:orderInCategory="3"
+        android:title="@string/out">
+    </item>
+    <item
+        android:id="@+id/item7"
+        android:icon="@drawable/menu7"
+        android:orderInCategory="4"
+        android:title="@string/setting">
+    </item>
+
+</menu>

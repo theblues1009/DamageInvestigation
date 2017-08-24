@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">DamageInvestigation</string>
     <string name="action_settings">Settings</string>
+    <string name="spn_treeSpecies_prompt">選択</string>
+    <string-array name="spn_treeSpecies_items">
+        <item>トドマツ</item>
+        <item>アカエゾマツ</item>
+        <item>カラマツ</item>
+        <item>F1</item>
+        <item>ナラ</item>
+        <item>ケヤマハンノキ</item>
+        <item>その他</item>
+    </string-array>
+    <string name="home">ホーム</string>
+    <string name="guide">ガイド</string>
+    <string name="manual">要領</string>
+    <string name="distinguishment">被害の見分け方</string>
+    <string name="in">インポート</string>
+    <string name="out">エクスポート</string>
+    <string name="version">バージョン</string>
+    <string name="setting">設定</string>
 </resources>

@@ -53,14 +53,19 @@ public class InvestigationAdapter extends BaseAdapter {
         Date date = mInvestigationList.get(position).getDate();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.JAPANESE);
         String dateStr = sdf.format(date);
+        textView3.setText(dateStr);
         textView1.setText(mInvestigationList.get(position).getRinpan() + "林班" + mInvestigationList.get(position).getSyohan() + "小班");
 
+        if (mInvestigationList.get(position).getDamege_rate() == 0) {
+            textView2.setText("被害率：" + "   %");
+        } else{
 
-        textView2.setText("被害率：" + mInvestigationList.get(position).getRateOfInvestigation() + "%");
-        textView3.setText("調査日時：" + dateStr);
+            textView2.setText("被害率：" + String.format("%1$.2f",mInvestigationList.get(position).getDamege_rate()) + "%");
+        }
 
-        return convertView;
+            return convertView;
+        }
     }
-}
+
 
 
